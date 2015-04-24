@@ -18,6 +18,6 @@ TEST(ixamaxDoubleTest, postive) {
 	for (int i = 0; i < size; i++){
 		vector[i] = i % 31;
 	}
-	int max_res = cblas_isamax(size, vector, 1);
+	int max_res = cblas_idamax(size, vector, 1);
 	ASSERT_DOUBLE_EQ(29, max_res);
 }
