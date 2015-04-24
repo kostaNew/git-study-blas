@@ -29,21 +29,42 @@ $(OBJ)xscal.o: $(SRC)xscal.c
 #$(OBJ)xswap.o: $(SRC)xswap.c
 #	$(CC) $(FLAGS) -c $(SRC)xswap.c -I$(HEADERS) -o $(OBJ)xswap.o
 
-#tests
+#test
 
-tests: blas_test
+test: blas_test
 
-blas_test: $(OBJ)ixamax.o $(OBJ)xasum.o $(OBJ)xdot.o $(OBJ)xscal.o $(OBJ)gtest-all.obj $(OBJ)gtest_main.obj $(OBJ)xcopy_test.obj
-	$(CCC) $(CCC_FLAGS) $(OBJ)ixamax.o $(OBJ)xasum.o $(OBJ)xdot.o $(OBJ)xscal.o $(OBJ)gtest-all.obj $(OBJ)gtest_main.obj $(OBJ)xcopy_test.obj -lpthread -o $(BIN)blas_test
+blas_test: study_blas test_main test_cases
+	$(CCC) $(CCC_FLAGS) \
+	$(OBJ)ixamax.o $(OBJ)xasum.o $(OBJ)xdot.o $(OBJ)xscal.o \
+	$(OBJ)gtest-all.obj $(OBJ)gtest_main.obj \
+	$(OBJ)ixamax_test.obj $(OBJ)xasum_test.obj $(OBJ)xdot_test.obj $(OBJ)xscal_test.obj \
+	-lpthread -o $(BIN)blas_test
 
+test_main: $(OBJ)gtest-all.obj $(OBJ)gtest_main.obj
+	
+test_cases: $(OBJ)ixamax_test.obj $(OBJ)xasum_test.obj $(OBJ)xdot_test.obj $(OBJ)xscal_test.obj
+	
 $(OBJ)gtest-all.obj: ./third_party/gtest/gtest-all.cc
 	$(CCC) $(CCC_FLAGS) -c ./third_party/gtest/gtest-all.cc -lpthread -I./third_party/gtest/ -I$(HEADERS) -o $(OBJ)gtest-all.obj
 
-$(OBJ)gtest_main.obj: ./third_party/gtest/gtest-all.cc
+$(OBJ)gtest_main.obj:  $(TEST)gtest_main.cpp 
 	$(CCC) $(CCC_FLAGS) -c $(TEST)gtest_main.cpp -lpthreads -I./third_party/gtest/ -I$(HEADERS) -o $(OBJ)gtest_main.obj
+
+#Test cases
+$(OBJ)ixamax_test.obj: $(TEST)ixamax_test.cpp
+	$(CCC) $(CCC_FLAGS) -c $(TEST)ixamax_test.cpp -lpthreads -I./third_party/gtest/ -I$(HEADERS) -o $(OBJ)ixamax_test.obj
 	
-$(OBJ)xcopy_test.obj: ./third_party/gtest/gtest-all.cc
-	$(CCC) $(CCC_FLAGS) -c $(TEST)xcopy_test.cpp -lpthreads -I./third_party/gtest/ -I$(HEADERS) -o $(OBJ)xcopy_test.obj
+$(OBJ)xasum_test.obj: $(TEST)xasum_test.cpp
+	$(CCC) $(CCC_FLAGS) -c $(TEST)xasum_test.cpp -lpthreads -I./third_party/gtest/ -I$(HEADERS) -o $(OBJ)xasum_test.obj
+	
+$(OBJ)xdot_test.obj: $(TEST)xdot_test.cpp
+	$(CCC) $(CCC_FLAGS) -c $(TEST)xdot_test.cpp -lpthreads -I./third_party/gtest/ -I$(HEADERS) -o $(OBJ)xdot_test.obj
+	
+$(OBJ)xscal_test.obj: $(TEST)xscal_test.cpp
+	$(CCC) $(CCC_FLAGS) -c $(TEST)xscal_test.cpp -lpthreads -I./third_party/gtest/ -I$(HEADERS) -o $(OBJ)xscal_test.obj
+	
+#$(OBJ)xswap_test.obj: $(TEST)xswap_test.cpp
+#	$(CCC) $(CCC_FLAGS) -c $(TEST)xswap_test.cpp -lpthreads -I./third_party/gtest/ -I$(HEADERS) -o $(OBJ)xswap_test.obj
 	
 clean:
 	rm -rf $(OBJ)*.o $(OBJ)*.obj

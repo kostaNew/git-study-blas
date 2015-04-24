@@ -1,8 +1,8 @@
 # include "gtest.h"
 extern "C" {
-	# include "xcopy.h"
+	# include "xasum.h"
 }
 
-TEST(TestTest, postive) {
+TEST(xasumTest, postive) {
 	SUCCEED();
 }
