@@ -1,8 +1,9 @@
 CC = gcc
-CC_FLAGS = -std=c99 -O0 -fPIC
+CC_FLAGS = -std=c99 -O0
 CCC = g++
 CCC_FLAGS = -O0
 HEADERS = ./include/
+TEST = ./test/
 SRC = ./src/
 OBJ = ./obj/
 BIN = ./bin/
@@ -30,11 +31,20 @@ $(OBJ)xscal.o: $(SRC)xscal.c
 
 #tests
 
-tests: $(OBJ)gtest-all.obj
+tests: blas_test
+
+blas_test: $(OBJ)ixamax.o $(OBJ)xasum.o $(OBJ)xdot.o $(OBJ)xscal.o $(OBJ)gtest-all.obj $(OBJ)gtest_main.obj $(OBJ)xcopy_test.obj
+	$(CCC) $(CCC_FLAGS) $(OBJ)ixamax.o $(OBJ)xasum.o $(OBJ)xdot.o $(OBJ)xscal.o $(OBJ)gtest-all.obj $(OBJ)gtest_main.obj $(OBJ)xcopy_test.obj -lpthread -o $(BIN)blas_test
 
 $(OBJ)gtest-all.obj: ./third_party/gtest/gtest-all.cc
-	$(CCC) $(CCC_FLAGS) -c ./third_party/gtest/gtest-all.cc -lpthreads -I./third_party/gtest/ -o $(OBJ)gtest-all.obj
+	$(CCC) $(CCC_FLAGS) -c ./third_party/gtest/gtest-all.cc -lpthread -I./third_party/gtest/ -I$(HEADERS) -o $(OBJ)gtest-all.obj
 
+$(OBJ)gtest_main.obj: ./third_party/gtest/gtest-all.cc
+	$(CCC) $(CCC_FLAGS) -c $(TEST)gtest_main.cpp -lpthreads -I./third_party/gtest/ -I$(HEADERS) -o $(OBJ)gtest_main.obj
+	
+$(OBJ)xcopy_test.obj: ./third_party/gtest/gtest-all.cc
+	$(CCC) $(CCC_FLAGS) -c $(TEST)xcopy_test.cpp -lpthreads -I./third_party/gtest/ -I$(HEADERS) -o $(OBJ)xcopy_test.obj
+	
 clean:
 	rm -rf $(OBJ)*.o $(OBJ)*.obj
 	rm -rf bin/study_blas
