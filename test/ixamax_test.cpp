@@ -5,19 +5,21 @@ extern "C" {
 
 TEST(ixamaxFloatTest, postive) {
 	int size = 100;
-	float vector[size];
-	for (int i = 0; i < size; i++){
-		vector[i] = i % 31;
+	float test_arr[size];
+	for (int i = 0; i < size; i++) {
+		test_arr[i] = 0;
 	}
-	int max_res = cblas_isamax(size, vector, 1);
-	ASSERT_FLOAT_EQ(30, max_res);
+	test_arr[19] = 117;
+	int max_ind = cblas_isamax(size, test_arr, 1);
+	ASSERT_FLOAT_EQ(19, max_ind);
 } 
 TEST(ixamaxDoubleTest, postive) {
 	int size = 100;
-	double vector[size];
-	for (int i = 0; i < size; i++){
-		vector[i] = i % 31;
+	double test_arr[size];
+	for (int i = 0; i < size; i++) {
+		test_arr[i] = 0;
 	}
-	int max_res = cblas_idamax(size, vector, 1);
-	ASSERT_DOUBLE_EQ(30, max_res);
+	test_arr[17] = 117;
+	int max_ind = cblas_idamax(size, test_arr, 1);
+	ASSERT_DOUBLE_EQ(17, max_ind);
 }
