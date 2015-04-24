@@ -10,8 +10,11 @@ BIN = ./bin/
 
 all: study_blas
 
-study_blas: $(OBJ)ixamax.o $(OBJ)xasum.o $(OBJ)xdot.o $(OBJ)xscal.o $(OBJ)xswap.o
-	$(CC) $(CC_FLAGS) $(OBJ)ixamax.o $(OBJ)xasum.o $(OBJ)xdot.o $(OBJ)xscal.o $(OBJ)xswap.o -shared -o $(BIN)study_blas.so
+study_blas: $(OBJ)ixamax.o $(OBJ)xasum.o $(OBJ)xdot.o $(OBJ)xscal.o $(OBJ)xnrm2.o $(OBJ)xswap.o
+	$(CC) $(CC_FLAGS) $(OBJ)ixamax.o $(OBJ)xasum.o $(OBJ)xdot.o $(OBJ)xscal.o $(OBJ)xnrm2.o $(OBJ)xswap.o -shared -o $(BIN)study_blas.so
+
+$(OBJ)xnrm2.o: $(SRC)xnrm2.c
+	$(CC) $(CC_FLAGS) -c $(SRC)xnrm2.c -I$(HEADERS) -o $(OBJ)xnrm2.o
 
 $(OBJ)ixamax.o: $(SRC)ixamax.c
 	$(CC) $(CC_FLAGS) -c $(SRC)ixamax.c -I$(HEADERS) -o $(OBJ)ixamax.o
