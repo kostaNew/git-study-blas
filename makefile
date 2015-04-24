@@ -28,7 +28,6 @@ $(OBJ)xdot.o: $(SRC)xdot.c
 $(OBJ)xscal.o: $(SRC)xscal.c
 	$(CC) $(CC_FLAGS) -c $(SRC)xscal.c -I$(HEADERS) -o $(OBJ)xscal.o
 
-#bad code
 $(OBJ)xswap.o: $(SRC)xswap.c
 	$(CC) $(CC_FLAGS) -c $(SRC)xswap.c -I$(HEADERS) -o $(OBJ)xswap.o
 
@@ -65,7 +64,7 @@ $(OBJ)xdot_test.obj: $(TEST)xdot_test.cpp
 	
 $(OBJ)xscal_test.obj: $(TEST)xscal_test.cpp
 	$(CCC) $(CCC_FLAGS) -c $(TEST)xscal_test.cpp -lpthreads -I./third_party/gtest/ -I$(HEADERS) -o $(OBJ)xscal_test.obj
-	
+
 $(OBJ)xswap_test.obj: $(TEST)xswap_test.cpp
 	$(CCC) $(CCC_FLAGS) -c $(TEST)xswap_test.cpp -lpthreads -I./third_party/gtest/ -I$(HEADERS) -o $(OBJ)xswap_test.obj
 	
