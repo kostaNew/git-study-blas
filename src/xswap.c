@@ -1,5 +1,3 @@
-#include <malloc.h>
-
 void cblas_sswap (const int n, float *x, const int incx, float *y, const int incy)
 {
 	for (int i=0; i < n; i++)

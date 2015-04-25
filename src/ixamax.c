@@ -5,6 +5,7 @@ int cblas_isamax (const int n, const float *x, const int incx){
 		float current = x[i*incx];
 		if (current > max) {
 			max_index = i*incx;
+			max = current;
 		}
 	}
 	return max_index;
@@ -16,6 +17,7 @@ int cblas_idamax (const int n, const double *x, const int incx){
 		double current = x[i*incx];
 		if (current > max) {
 			max_index = i*incx;
+			max = current;
 		}
 	}
 	return max_index;
