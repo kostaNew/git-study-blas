@@ -3,6 +3,8 @@ extern "C" {
 	# include "ixamax.h"
 }
 
+//Нужны тесты на inc? != 1
+
 TEST(ixamaxFloatTest, postive) {
 	int size = 100;
 	float test_arr[size];
