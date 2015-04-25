@@ -2,7 +2,10 @@ void cblas_sswap (const int n, float *x, const int incx, float *y, const int inc
 {
 	for (int i=0; i < n; i++)
 	{
-		float temp = x[i*incx];
+		//Все переменные внутри цикла, значения которых ставится с самого начала желательно писать через const
+		//Это нужно для оптимизирующего компилятора
+		//Например так: const float temp = x[i*incx]; 
+		float temp = x[i*incx]; 
 		x[i*incx] = y[i*incy];
 		y[i*incy] = temp;
 	}
