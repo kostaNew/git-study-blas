@@ -3,6 +3,8 @@ extern "C" {
 	# include "xdot.h"
 }
 
+//Нужны тесты на inc? != 1
+
 TEST(xdotFloatTest, postive) {
 	int size = 5;
 	float test1[size];
