@@ -3,6 +3,9 @@ extern "C" {
 	# include "xasum.h"
 }
 
+//Сделать массивы больше
+//Нужны тесты на inc? != 1
+
 TEST(xasumFloatTest, postive) {
 	int size = 3;
 	float test[size];
