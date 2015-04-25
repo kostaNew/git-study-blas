@@ -3,6 +3,9 @@
 
 cblas_saxpy (const int n, const float a, const float *x, const int incx, float *y, const int incy)
 {
+	//Мы используем станарт с99. В нем переменные можно обозначать в момент использования, те
+	//for (int i = 0; i < n; ++i)
+	//Если у вас не компилируется, попробуйте ключ компилятора -std=c99
 	int i;
 	
 	for (i = 0; i < n; ++i)
