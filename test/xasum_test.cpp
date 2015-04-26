@@ -13,8 +13,8 @@ TEST(xasumFloatTest, postive) {
 		test[i] = i;
 
 	}
-	float result = cblas_sasum(size, test, 2);
-	ASSERT_FLOAT_EQ(210, result);
+	float result = cblas_sasum(size, test, 1);
+	ASSERT_FLOAT_EQ(435, result);
 }
 
 TEST(xasumDoubleTest, postive) {
@@ -24,6 +24,6 @@ TEST(xasumDoubleTest, postive) {
 		test[i] = i;
 
 	}
-	double result = cblas_dasum(size, test, 2);
-	ASSERT_DOUBLE_EQ(210, result);
+	double result = cblas_dasum(size, test, 1);
+	ASSERT_DOUBLE_EQ(435, result);
 }
