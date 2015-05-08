@@ -4,6 +4,17 @@ extern "C" {
 }
 
 
+/**
+    \file
+    \brief Тесты для скалярного произведения векторов
+*/
+
+
+/**
+    Наивный тест скалярного произведения векторов типа float.
+    Incx, incy равны 1.
+ */
+
 TEST(xdotFloatTest, postive) {
 	const int vector_size = 100;
 	const int inc = 1;
@@ -19,6 +30,11 @@ TEST(xdotFloatTest, postive) {
 	ASSERT_FLOAT_EQ(200, dot_res);
 }
 
+
+/**
+    Наивный тест скалярного произведения векторов типа double.
+    Incx, incy равны 1.
+ */
 TEST(xdotDoubleTest, postive) {
 	const int vector_size = 100;
 	const int inc = 1;
@@ -34,6 +50,11 @@ TEST(xdotDoubleTest, postive) {
 	ASSERT_DOUBLE_EQ(200, dot_res);
 }
 
+
+
+/**
+    Тест различных incx, incy для скалярного произведения векторов типа float.
+ */
 TEST(xdotFloatIncTest, postive) {
 	const int vector_size = 150;
 	const int incx = 3;
@@ -55,6 +76,9 @@ TEST(xdotFloatIncTest, postive) {
 	ASSERT_FLOAT_EQ(300, dot_res);
 }
 
+/**
+    Тест различных incx, incy для скалярного произведения векторов типа double.
+ */
 TEST(xdotDoubleIncTest, postive) {
 	const int vector_size = 150;
 	const int incx = 5;
